@@ -20,13 +20,10 @@ sys.setdefaultencoding('utf-8')
 parser = argparse.ArgumentParser()
 parser.add_argument('X', type=str,
             help="fileName")
-parser.add_argument('Y', type=str,
-            help="tableName")
 
 args = parser.parse_args()
     
 X = args.X # upload file name
-Y = args.Y # table name
 
 
 # skip row 1 so pandas can parse the data properly.
@@ -34,7 +31,27 @@ uploadFilePath='/Users/hyunjin/Desktop/'+X
     
 #'/Users/hyunjin/Documents/dataAnalysis/airbnb/airbnb_listings.csv'  
  
+connDB = pymysql.connect(host='localhost', user='root', password='shguswls12',db='SpringTest', charset='utf8')
  
+connDB.query("set character_set_connection=utf8;")
+connDB.query("set character_set_server=utf8;")
+connDB.query("set character_set_client=utf8;")
+connDB.query("set character_set_results=utf8;")
+connDB.query("set character_set_database=utf8;")
+
+curs = connDB.cursor()
+
+sql="delete from airbnb_result" #예측결과가 담긴 테이블
+print("0") 
+curs.execute(sql)
+connDB.commit()
+
+sql="delete from airbnb_test" #사용자가 올린 csv데이터 정규화 함. 
+print("0.6")  
+curs.execute(sql)
+connDB.commit()
+
+print("0.9") 
 ### 정규화 시작      
 loans_2007 = pd.read_csv(uploadFilePath,header=0,thousands = ',', low_memory=False)
 half_count = len(loans_2007) / 2
@@ -66,7 +83,7 @@ loans_2007_filtered= loans_2007_filtered.astype('float')
 engine = create_engine("mysql+pymysql://root:"+"shguswls12"+"@localhost:3306/SpringTest",encoding="utf8")
 
 new_dataframe=pd.DataFrame(loans_2007_filtered)
-new_dataframe.to_csv(uploadFilePath,index=False) #정규화한 파일 저장
+#new_dataframe.to_csv(uploadFilePath,index=False) #정규화한 파일 저장
 
 print("끝!!!!!!!!!!!!!1")
 
@@ -82,28 +99,16 @@ conn.close()
 ### 정규화 완료
 
 ### 에어비앤비 가격 예측 시작
-connDB = pymysql.connect(host='localhost', user='root', password='shguswls12',db='SpringTest', charset='utf8')
- 
-connDB.query("set character_set_connection=utf8;")
-connDB.query("set character_set_server=utf8;")
-connDB.query("set character_set_client=utf8;")
-connDB.query("set character_set_results=utf8;")
-connDB.query("set character_set_database=utf8;")
-
-curs = connDB.cursor()
-
 SQL = "select * from airbnb_assets" # 기본 data + 업로드 data
 
 normalized_listings=pd.read_sql(SQL,connDB)
 
-normalized_listings.to_csv(uploadFilePath,index=False)
-
-# curs.close()
-# conn.close()
+curs.close()
+connDB.close()
 
 print("***************")
 print(normalized_listings.shape)
-normalized_listings=normalized_listings.sample(frac=1,random_state=0)
+normalized_listings=normalized_listings.sample(frac=1,random_state=0) 
 
 print("0")
 train_num=round(normalized_listings.shape[0]*0.7)
@@ -140,18 +145,17 @@ print('four_features_rmse',four_features_rmse)
 
 chart_df=norm_test_df.sample(n=1000)
 
-engine = create_engine("mysql+pymysql://root:"+"shguswls12"+"@localhost:3306/SpringTest",encoding="utf8")
-print("이번엔 모델 예측값 저장")
-conn = engine.connect()   
-print("4.2")
-result_df=chart_df.set_index("id") #index해줘야 자동으로 만든 index 삭제함
-print("4.4")
-
-result_df.to_sql(name='airbnb_chart', con=engine, if_exists='append')
-print("성공")
-
-conn.close()
-
+# engine = create_engine("mysql+pymysql://root:"+"shguswls12"+"@localhost:3306/SpringTest",encoding="utf8")
+# print("이번엔 모델 예측값 저장")
+# conn = engine.connect()   
+# print("4.2")
+# result_df=chart_df.set_index("id") #index해줘야 자동으로 만든 index 삭제함
+# print("4.4")
+# 
+# result_df.to_sql(name='airbnb_chart', con=engine, if_exists='append')
+# print("성공")
+# 
+# conn.close()
 
 test_df=new_dataframe #예측할 데이터
 

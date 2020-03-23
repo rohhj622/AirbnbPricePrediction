@@ -38,11 +38,9 @@ public class FileUploadController{
 	 * @throws Exception 
 	 */
 	@RequestMapping(value = "/fileupload")
-	public String upload(MultipartFile uploadfile,@RequestParam("country")String country,Model model) throws Exception{
-	    
-	
+	public String upload(MultipartFile uploadfile,Model model) throws Exception{
+
 		
-		logger.info(country);
 		// 파일 이름 변경
 	    UUID uuid = UUID.randomUUID();
 	    
@@ -58,14 +56,14 @@ public class FileUploadController{
         saveFile(uploadfile,saveName);
         
         // 파이선 파일 실행
-        callPython(saveName,country);
+        callPython(saveName);
 	    
        
         List<AirbnbResultVO> resultList=service.selectResult();
         
         model.addAttribute("resultList", resultList);
         
-	    return "test";
+	    return "test2";
 
 	}
 	
@@ -87,14 +85,14 @@ public class FileUploadController{
 
 	} // end saveFile
 	
-	private void callPython(String saveName,String country) throws IOException {
+	private void callPython(String saveName) throws IOException {
 		BufferedReader input =null;
 	     
 	    try {
 	        long start, end;
 	        String line;
-	        String execPath ="python //Users/hyunjin/Documents/spring-ex/aiTest/src/main/webapp/WEB-INF/views/DataCleaning7.py"+
-	        				" "+saveName+" "+country;
+	        String execPath ="python //Users/hyunjin/Documents/spring-ex/aiTest/src/main/webapp/WEB-INF/views/DataAnalysis.py"+
+	        				" "+saveName;
 	        
 	        logger.info("execPath : " + execPath);
 	        start = System.currentTimeMillis();

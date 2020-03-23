@@ -34,7 +34,12 @@ public class HomeController {
 		
 		model.addAttribute("serverTime", formattedDate );
 		
-		return "home";
+		return "main";
+	}
+	
+	@RequestMapping(value = "/airbnbPrice")
+	public String viewHome() {
+		return "home2";
 	}
 
 	
