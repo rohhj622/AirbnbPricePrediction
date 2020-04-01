@@ -142,7 +142,7 @@
             <br><br><br><br>
 
 				 <h1 class="text" style="color: #0F4C81">Airbnb 가격 산정</h1>
-				<form action="fileupload" method="post" enctype="multipart/form-data">
+				<form action="<c:url value='/airbnbfileupload' />" method="post" enctype="multipart/form-data">
 					<br>
 				    <span class="sub-text mb-1 d-block" style="color:#0F4C81">* 업로드 파일 내용 *</span>
 				    <span class="sub-text mb-1 d-block" style="color:#0F4C81">1. 형식- csv</span>

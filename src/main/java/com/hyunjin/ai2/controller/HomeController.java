@@ -41,6 +41,12 @@ public class HomeController {
 	public String viewHome() {
 		return "home2";
 	}
+	
+	@RequestMapping(value = "/newsText")
+	public String viewNewsText() {
+		return "/newsTextAnalysis/fileupload";
+	}
+
 
 	
 }

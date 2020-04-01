@@ -1,3 +1,13 @@
 eclipse.preferences.version=1
+encoding//src/main/webapp/WEB-INF/views/Make_model.py=utf-8
+encoding//src/main/webapp/WEB-INF/views/Mecab.py=utf-8
+encoding//src/main/webapp/WEB-INF/views/Preprocessing.py=utf-8
 encoding//src/main/webapp/WEB-INF/views/etc/DataCleaning3.py=utf-8
-encoding//src/main/webapp/WEB-INF/views/home.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/views/etc/home.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/views/fileupload.py=utf-8
+encoding//src/main/webapp/WEB-INF/views/main.py=utf-8
+encoding//src/main/webapp/WEB-INF/views/newsTextAnalysis/Make_model.py=utf-8
+encoding//src/main/webapp/WEB-INF/views/newsTextAnalysis/Mecab.py=utf-8
+encoding//src/main/webapp/WEB-INF/views/newsTextAnalysis/Preprocessing.py=utf-8
+encoding//src/main/webapp/WEB-INF/views/newsTextAnalysis/fileupload.py=utf-8
+encoding//src/main/webapp/WEB-INF/views/newsTextAnalysis/main.py=utf-8

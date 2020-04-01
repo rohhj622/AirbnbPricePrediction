@@ -216,19 +216,18 @@
       <div class="container">
         <div class="row align-items-center text-center justify-content-center ">
           <div class="col-lg-8 col-md-8">
-           <!--  <a data-fancybox data-ratio="2" href="https://vimeo.com/317571768" class="play-button d-block">
-              <span class="icon-play"></span>
-            </a> -->
-            <br><br><br><br>
+          	<br><br><br><br>
 				 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-				 <h1 class="text" style="color: #0F4C81">RESULT</h1>
-				    <div id="chart_div" style="width: 65em; height: 30em;"></div>
-				
-			<br><br><br><br><br><br><br><br><br><br>
+				 <h1 class="text" style="color: #0F4C81">RESULT</h1>			
+			<br><br>
             <!-- <span class="sub-text mb-3 d-block" style="color:#0F4C81"><em>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam molestiae ipsam, atque.</em></span>
            -->
            </div>
+           <div class="row text-center justify-content-center">
+				<div id="chart_div" style="width: 65em; height: 30em;"></div>
+       		</div>
         </div>
+        
         
       </div>
     </div>  

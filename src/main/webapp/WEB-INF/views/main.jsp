@@ -559,17 +559,17 @@
             <span class="text-muted">Interior</span>
           </div>
           <div class="col-lg-4 col-md-6 mb-4 project-entry">
-            <a href="resources/images/img_2.jpg" class="d-block figure" data-fancybox="gallery">
+            <a href="<c:url value='/newsText' />">
               <img src="resources/images/img_2.jpg" alt="Image" class="img-fluid">
             </a>
-            <h3 class="mb-0"><a href="#">Interior Bed Design</a></h3>
-            <span class="text-muted">Design</span>
+            <h3 class="mb-0"><a href="#">뉴스 텍스트 분석</a></h3>
+            <span class="text-muted">#Text #News</span>
           </div>
           <div class="col-lg-4 col-md-6 mb-4 project-entry">
             <a href="<c:url value='/airbnbPrice' />">
               <img src="resources/images/img_3.jpg" alt="Image" class="img-fluid">
             </a>
-            <h3 class="mb-0"><a href="#">Airbnb 가격 예측</a></h3>
+            <h3 class="mb-0"><a href="#">Airbnb 가격 산정</a></h3>
             <span class="text-muted">#airbnb #dataAnalysis</span>
           </div>
 

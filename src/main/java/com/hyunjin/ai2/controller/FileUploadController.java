@@ -37,7 +37,7 @@ public class FileUploadController{
 	 * Simply selects the home view to render by returning its name.
 	 * @throws Exception 
 	 */
-	@RequestMapping(value = "/fileupload")
+	@RequestMapping(value = "/airbnbfileupload")
 	public String upload(MultipartFile uploadfile,Model model) throws Exception{
 
 		
@@ -72,7 +72,8 @@ public class FileUploadController{
 	private void saveFile(MultipartFile file, String saveName){
 
 	    logger.info("saveName: {}",saveName);
-
+	    
+	    // 여기 변경
 	    // 저장할 File 객체를 생성(껍데기 파일)ㄴ
 	    File saveFile = new File("/Users/hyunjin/Desktop",saveName); // 저장할 폴더 이름, 저장할 파일 이름
 
@@ -89,6 +90,7 @@ public class FileUploadController{
 		BufferedReader input =null;
 	     
 	    try {
+	    	//exec Path 변경
 	        long start, end;
 	        String line;
 	        String execPath ="python //Users/hyunjin/Documents/spring-ex/aiTest/src/main/webapp/WEB-INF/views/DataAnalysis.py"+
