@@ -17,9 +17,10 @@
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<beans:property name="prefix" value="/WEB-INF/views/" />
-		<beans:property name="suffix" value=".jsp" />
-	</beans:bean>
+		<beans:property name="prefix" value="/WEB-INF/views/" />  <!-- 앞에 붙고 -->
+		<beans:property name="suffix" value=".jsp" />  <!-- 뒤에 붙고 -->
+	</beans:bean>	
+	<!-- webapp/WEB-INF/views/home.jsp -->
 	
 	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<beans:property name="maxUploadSize" value="268435456"/>

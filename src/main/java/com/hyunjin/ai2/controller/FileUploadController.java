@@ -93,7 +93,7 @@ public class FileUploadController{
 	    	//exec Path 변경
 	        long start, end;
 	        String line;
-	        String execPath ="python //Users/hyunjin/Documents/spring-ex/aiTest/src/main/webapp/WEB-INF/views/DataAnalysis.py"+
+	        String execPath ="python //Users/hyunjin/Documents/spring-ex/aiTest/src/main/webapp/WEB-INF/views/DataAnalysis4.py"+
 	        				" "+saveName;
 	        
 	        logger.info("execPath : " + execPath);

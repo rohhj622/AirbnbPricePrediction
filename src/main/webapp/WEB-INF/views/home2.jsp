@@ -155,7 +155,7 @@
 				    <span class="sub-text mb-1 d-block" style="color:#0F4C81">beds(침대 개수)</span>
 				    <span class="sub-text mb-3 d-block" style="color:#0F4C81">3. 각 열의 항목의 값은 숫자.</span>
 				    <hr>
-				    <input class="btn btn-info btn-xs" type="file" name="uploadfile" placeholder="파일 선택" /><br/>
+				    <input class="btn btn-info btn-xs"  multiple="multiple" type="file" name="uploadfile" placeholder="파일 선택" /><br/>
           
 				    <br>
 				    <input class="btn btn-info btn-md" type="submit" value="업로드">

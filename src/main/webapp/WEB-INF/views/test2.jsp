@@ -40,46 +40,20 @@
 	</style>
 	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 	
+	
 	<c:set var="resultSum" value="0"/>    
 	<c:set var="i" value="0"/>
 	
     <c:forEach items="${resultList}" var="result" varStatus="st">
+    	 <!-- 예측값 다 더하기  -->
     	<c:set var="resultSum" value="${resultSum+result.predicted_price}"/>
+    	<!--  총 데이터 수를 알기 위함 -->
     	<c:set var="i" value="${i+1}"/>
     </c:forEach>
  
+ 	<!-- 예측값의 평균 -->
     <c:set var="sumAverage" value="${resultSum/i}"/>
-	
-  	<script type="text/javascript">
-    	google.charts.load("current", {packages:['corechart']});
-    	google.charts.setOnLoadCallback(drawChart);
-    	function drawChart() {
-      	var data = google.visualization.arrayToDataTable([
-      		["id", "예측가격", { role: "style" } ],
-	        <c:forEach items="${resultList}" var="result" varStatus="st">
-          	['${result.id}', parseInt('${result.predicted_price}'),"#99d6ff"],
-          	</c:forEach>
-      	]);
 
-      	var view = new google.visualization.DataView(data);
-     	view.setColumns([0, 1,
-        	               { calc: "stringify",
-            	             sourceColumn: 1,
-                	         type: "string",
-                    	     role: "annotation" },
-                       	2]);
-
-      	var options = {
-        	title: "가격예측",
-        	width: 1300,
-        	height: 400,
-        	bar: {groupWidth: "75%"},
-        	legend: { position: "none" },
-      	};
-      	var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_values"));
-      	chart.draw(view, options);
-  		}
-  	</script>
 	<script type="text/javascript">
       google.charts.load('current', {'packages':['corechart']});
       google.charts.setOnLoadCallback(drawVisualization);
@@ -87,15 +61,15 @@
       function drawVisualization() {
         // Some raw data (not necessarily accurate)
         var data = google.visualization.arrayToDataTable([
-        	["숙소 id", "예측가격(단위:$)", "평균가격(단위:$)" ],
-	        <c:forEach items="${resultList}" var="result" varStatus="st">
+        	["숙소 id", "산정가격(단위:$)", "평균가격(단위:$)" ],
+	        <c:forEach items="${resultList}" var="result" varStatus="st">  /*forEach 이용하여 리스트로 받은 결과 값 꺼내기  */
           	['${result.id}', parseInt('${result.predicted_price}'),parseInt('${sumAverage}')],
           	</c:forEach>
         ]);
 
         var options = {
-          title : 'Airbnb 가격 예측',
-          vAxis: {title: '예측가격(단위:$)'},
+          title : 'Airbnb 가격 산정',
+          vAxis: {title: '산정가격(단위:$)'},
           hAxis: {title: '숙소 id'},
           seriesType: 'bars',
           series: {1: {type: 'line'}}        };
@@ -199,9 +173,6 @@
                     <li>
                       <a href="<c:url value='/' />" class="nav-link">Projects</a>
                     </li>
-<!--                     <li><a href="#news-section" class="nav-link">News</a></li>
-                    <li><a href="#services-section" class="nav-link">Services</a></li>
-                    <li><a href="#contact-section" class="nav-link">Contact</a></li> -->
                   </ul>
                 </div>
               </nav>
