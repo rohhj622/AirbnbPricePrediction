@@ -8,6 +8,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.hyunjin.ai2.domain.AirbnbResultVO;
+import com.hyunjin.ai2.domain.AirbnbStatisticsVO;
+import com.hyunjin.ai2.domain.AirbnbTrainChartVO;
 
 @Repository
 public class AirbnbResultDAOImpl implements AirbnbResultDAO{
@@ -22,6 +24,18 @@ public class AirbnbResultDAOImpl implements AirbnbResultDAO{
 		// TODO Auto-generated method stub
 		
 		return session.selectList(namespace+".selectResult");
+	}
+
+	@Override
+	public AirbnbStatisticsVO selectStatistics() throws Exception {
+		// TODO Auto-generated method stub
+		return session.selectOne(namespace+".selectStatistics");
+	}
+
+	@Override
+	public List<AirbnbTrainChartVO> selectTrainChart() throws Exception {
+		// TODO Auto-generated method stub
+		return session.selectList(namespace+".selectTrainChart");
 	}
 
 }

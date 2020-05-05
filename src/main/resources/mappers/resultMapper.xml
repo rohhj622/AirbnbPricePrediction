@@ -6,5 +6,14 @@
 	<select id="selectResult" resultType="com.hyunjin.ai2.domain.AirbnbResultVO">
 		select * from SpringTest.airbnb_result;
 	</select>
+		
+	<select id="selectStatistics" resultType="com.hyunjin.ai2.domain.AirbnbStatisticsVO">
+		select * from SpringTest.airbnb_statistics
+	</select>
+	
+	<select id="selectTrainChart" resultType="com.hyunjin.ai2.domain.AirbnbTrainChartVO">
+		select * from SpringTest.airbnb_trainChart
+	</select>
+	
 </mapper>
 

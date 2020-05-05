@@ -20,6 +20,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.hyunjin.ai2.domain.AirbnbResultVO;
+import com.hyunjin.ai2.domain.AirbnbStatisticsVO;
+import com.hyunjin.ai2.domain.AirbnbTrainChartVO;
 import com.hyunjin.ai2.service.AirbnbResultService;
 
 /**
@@ -58,9 +60,12 @@ public class FileUploadController{
         // 파이선 파일 실행
         callPython(saveName);
 	    
-       
         List<AirbnbResultVO> resultList=service.selectResult();
+        AirbnbStatisticsVO statisticsVO=service.selectStatistics();
+        List<AirbnbTrainChartVO> trainChartList=service.selectTrainChart();
         
+        model.addAttribute("trainChartList",trainChartList);
+        model.addAttribute("statisticsVO",statisticsVO);
         model.addAttribute("resultList", resultList);
         
 	    return "test2";

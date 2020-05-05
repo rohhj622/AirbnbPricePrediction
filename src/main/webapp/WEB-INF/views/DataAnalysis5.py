@@ -21,19 +21,19 @@ import sys
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
-### 매개변수 받기
-### 업로드한 파일 이름 (장소는 임의로 지정)
-parser = argparse.ArgumentParser()
-parser.add_argument('X', type=str,
-            help="fileName")
-
-args = parser.parse_args()
-    
-X = args.X # upload file name
+# ### 매개변수 받기
+# ### 업로드한 파일 이름 (장소는 임의로 지정)
+# parser = argparse.ArgumentParser()
+# parser.add_argument('X', type=str,
+#             help="fileName")
+# 
+# args = parser.parse_args()
+#     
+# X = args.X # upload file name
 
 
 # skip row 1 so pandas can parse the data properly.
-uploadFilePath='/Users/hyunjin/Desktop/'+X
+uploadFilePath='/Users/hyunjin/Desktop/'+'325daeb6-fffc-4e69-a0d3-44bf533cc9fa_000_Cambridge(200222).csv'
  
 connDB = pymysql.connect(host='localhost', user='root', password='shguswls12',db='SpringTest', charset='utf8')
  
@@ -223,20 +223,17 @@ conn.close()
 engine = create_engine("mysql+pymysql://root:"+"shguswls12"+"@localhost:3306/SpringTest",encoding="utf8")
 conn = engine.connect()   
 # 
-# print("--22")
-# result2_df=trainChart.set_index("id") #index해줘야 자동으로 만든 index 삭제함
-# print("--33")
-# result2_df.to_sql(name='airbnb_trainChart', con=engine, if_exists='append')
-# print("가격,예측가격,오차 넣기 성공")
+print("--22")
+result2_df=trainChart.set_index("id") #index해줘야 자동으로 만든 index 삭제함
+print("--33")
+result2_df.to_sql(name='airbnb_trainChart', con=engine, if_exists='append')
+print("가격,예측가격,오차 넣기 성공")
 
 conn.close()
 
 print('---------------------------------끝-------------------------------------')
-
-print('------------------------------사용자 csv 예측----------------------------------')
-
 print("4")
-
+print('------------------------------사용자 csv 예측----------------------------------')
 test_df=new_dataframe #예측할 데이터
 test_four_features_predictions=knn.predict(test_df[cols])
 
