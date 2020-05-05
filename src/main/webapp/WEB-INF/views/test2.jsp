@@ -78,6 +78,76 @@
         chart.draw(data, options);
       }
     </script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawVisualization);
+
+      function drawVisualization() {
+        // Some raw data (not necessarily accurate)
+        var data = google.visualization.arrayToDataTable([
+        	["숙소 id", "x", "오차(가격-예측가격의 절댓값)" ],
+	        <c:forEach items="${trainChartList}" var="result" varStatus="st">  /*forEach 이용하여 리스트로 받은 결과 값 꺼내기  */
+          	['${result.id}', parseInt(0),parseInt('${result.absError}')],
+          	</c:forEach>
+        ]);
+
+        var options = {
+          title : '테스트 오차',
+          vAxis: {title: '오차'},
+          hAxis: {title: '숙소 id'},
+          seriesType: 'bars',
+          series: {1: {type: 'line'}}        };
+
+        var chart = new google.visualization.ComboChart(document.getElementById('chart_div1'));
+        chart.draw(data, options);
+      }
+    </script>
+    <!-- <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawVisualization);
+
+      function drawVisualization() {
+        // Some raw data (not necessarily accurate)
+        var data = google.visualization.arrayToDataTable([
+        	["숙소 id", "산정가격(단위:$)", "오차(단위:$)" ],
+	        <c:forEach items="${trainChartList}" var="result" varStatus="st">  /*forEach 이용하여 리스트로 받은 결과 값 꺼내기  */
+          	['${result.id}', parseInt('${result.predictedPrice}'),parseInt('${result.absError}')],
+          	</c:forEach>
+        ]);
+
+        var options = {
+          title : 'Airbnb 가격 산정',
+          vAxis: {title: '산정가격(단위:$)'},
+          hAxis: {title: '숙소 id'},
+          seriesType: 'bars',
+          series: {1: {type: 'line'}}        };
+
+        var chart = new google.visualization.ComboChart(document.getElementById('chart_div1'));
+        chart.draw(data, options);
+      }
+    </script> -->
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+	  function drawChart() {
+	    var data = google.visualization.arrayToDataTable([
+	    	 <c:forEach items="${trainChartList}" var="result" varStatus="st">  /*forEach 이용하여 리스트로 받은 결과 값 꺼내기  */
+	    	 //,parseInt('${result.absError}')
+	          	['${result.id}', parseInt('${result.price}'),parseInt('${result.price}'),parseInt('${result.predictedPrice}'),parseInt('${result.predictedPrice}')],
+	         </c:forEach>
+	      // Treat first row as data as well.
+	    ], true);
+	
+	    var options = {
+	      legend:'none'
+	    };
+	
+	    var chart = new google.visualization.CandlestickChart(document.getElementById('chart_div2'));
+	
+	    chart.draw(data, options);
+	  }
+    </script>
 	
 </head>
   </head>
@@ -197,6 +267,13 @@
            <div class="row text-center justify-content-center">
 				<div id="chart_div" style="width: 65em; height: 30em;"></div>
        		</div>
+       		<div class="row text-center justify-content-center">
+				<div id="chart_div1" style="width: 65em; height: 30em;"></div>
+				표준 오차 : ${statisticsVO.std/statisticsVO.numsqrt }<br>
+				분산 : ${statisticsVO.var }<br>
+				표준 편차 : ${statisticsVO.std }<br>
+				테스트 데이터 수 : ${statisticsVO.numsqrt*statisticsVO.numsqrt }
+       		</div>
         </div>
         
         
@@ -205,20 +282,20 @@
     
 
   
-    <footer class="site-footer border-top">
+    <!-- <footer class="site-footer border-top">
       <div class="container">
         <div class="row pt-5 mt-5 text-center">
           <div class="col-md-12">
             <p>
-            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+            Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0.
             Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart text-danger" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank" >Colorlib</a>
-            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+            Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0.
             </p>
           </div>
           
         </div>
       </div>
-    </footer>
+    </footer> -->
 
   <script src="resources/js/jquery-3.3.1.min.js"></script>
   <script src="resources/js/jquery-ui.js"></script>

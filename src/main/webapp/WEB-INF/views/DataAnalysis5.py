@@ -60,6 +60,12 @@ print("0.6")
 curs.execute(sql)
 connDB.commit()
 
+
+sql="delete from airbnb_trainChart" #통계수치 delete  
+print("0.7")  
+curs.execute(sql)
+connDB.commit()
+
 print("0.9") 
 ### 정규화 시작      
 loans_2007 = pd.read_csv(uploadFilePath,header=0,thousands = ',', low_memory=False)
@@ -195,7 +201,7 @@ b=norm_test_df['p_pp_sub'].std() #표준편차
 c=norm_test_df['p_pp_sub'].mean()
 #print("평균 : ",c)
 
-d=math.sqrt(len(norm_test_df)) #표준오차
+d=math.sqrt(len(norm_test_df)) #표준 오차를 구하기위한 테스트 테이터 수 루트 
 
 z={'var':[a],'std':[b],'mean':[c],'numsqrt':[d]}
 

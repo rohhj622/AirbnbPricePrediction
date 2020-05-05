@@ -11,10 +11,10 @@ public class AirbnbTrainChartVO {
 	 * predicted_price
 	 * */
 	
-	private double id; // 분산
-	private double price; //표준편차 
-	private double predictedPrice; // 평균 
-	private double absError; //분석 갯수 루트
+	private double id; 
+	private double price; 
+	private double predictedPrice; 
+	private double absError;
 	public double getId() {
 		return id;
 	}

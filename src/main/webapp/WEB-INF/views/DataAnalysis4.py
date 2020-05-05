@@ -60,6 +60,12 @@ print("0.6")
 curs.execute(sql)
 connDB.commit()
 
+sql="delete from airbnb_trainChart" #통계수치 delete  
+print("0.7")  
+curs.execute(sql)
+connDB.commit()
+
+
 print("0.9") 
 ### 정규화 시작      
 loans_2007 = pd.read_csv(uploadFilePath,header=0,thousands = ',', low_memory=False)
@@ -185,6 +191,7 @@ print('---------------------------분산&표준편차---------------------------
 norm_test_df['predicted_price']=four_features_predictions
 
 norm_test_df['p_pp_sub']= (norm_test_df['price']-norm_test_df['predicted_price'])
+# 가격-예측가격
 
 a= norm_test_df['p_pp_sub'].var() #분산
 #print("분산 : ",a)
@@ -195,7 +202,7 @@ b=norm_test_df['p_pp_sub'].std() #표준편차
 c=norm_test_df['p_pp_sub'].mean()
 #print("평균 : ",c)
 
-d=math.sqrt(len(norm_test_df)) #표준오차
+d=math.sqrt(len(norm_test_df)) #표준 오차
 
 z={'var':[a],'std':[b],'mean':[c],'numsqrt':[d]}
 
@@ -223,11 +230,11 @@ conn.close()
 engine = create_engine("mysql+pymysql://root:"+"shguswls12"+"@localhost:3306/SpringTest",encoding="utf8")
 conn = engine.connect()   
 # 
-# print("--22")
-# result2_df=trainChart.set_index("id") #index해줘야 자동으로 만든 index 삭제함
-# print("--33")
-# result2_df.to_sql(name='airbnb_trainChart', con=engine, if_exists='append')
-# print("가격,예측가격,오차 넣기 성공")
+print("--22")
+result2_df=trainChart.set_index("id") #index해줘야 자동으로 만든 index 삭제함
+print("--33")
+result2_df.to_sql(name='airbnb_trainChart', con=engine, if_exists='append')
+print("가격,예측가격,오차 넣기 성공")
 
 conn.close()
 
