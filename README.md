@@ -19,9 +19,7 @@
   + bedrooms
   + beds
   + price
-  + minimum_price
-  + maximum_price
-  + number_of_reviews
+
 - 사용자가 업로드할 파일의 columns
   + id
   + host_id
