@@ -8,7 +8,7 @@
 - **결과 차트로 표현**
 ### 설명
 - 사용 모델
-  + k-nearest-neighbor
+  + k-nearest-neighbor Regression
 - 모델 학습 비율
   + **Train 70%, Test 30%**
 - 사용한 데이터  
