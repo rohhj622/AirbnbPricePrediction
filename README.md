@@ -1,5 +1,6 @@
 # AirbnbPricePrediction
 > 에어비앤비 숙소의 가격을 예측해주는 웹사이트입니다.
+> 논문 발표 자료& 발표 영상 https://drive.google.com/drive/folders/1qg8RGkSfcVny3U8axOmgVvh8VSWtKNP5?usp=sharing
 #eclipse #spring #mysql8.0.17 #apacheTomcat9.0.24 #googleChart
 #python3 #pandas #k-nearest-neighbor #scikitLearn
 
